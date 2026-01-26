@@ -4,7 +4,7 @@ import { ENV } from './lib/env.js';
 import path from 'path';
 import { connectDB } from './lib/DB.js';
 import cors from "cors";
-import {serve} from "Inngest/express";
+import {serve} from "inngest/express";
 import { inngest, functions } from "./lib/inngest.js";
 
 
@@ -39,9 +39,6 @@ if(ENV.NODE_ENV === "production"){
   });
 
 }
-
-
-
 
 
 const startServer = async () => {
