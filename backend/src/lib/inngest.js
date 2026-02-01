@@ -16,7 +16,8 @@ const syncUser = inngest.createFunction(
         await connectDB()
         const {id,email_addresses, first_name,last_name,image_url} = event.data
 
-        console.log("🔥 syncUser triggered", event.data)
+        // console.log("🔥 syncUser triggered", event.data)
+        
         const newUser = {
         clerkId:id,
         email: email_addresses[0]?.email_address,
@@ -26,12 +27,14 @@ const syncUser = inngest.createFunction(
 
     await User.create(newUser)
      
-    await upsertStreamUser({
+   const result = await upsertStreamUser({
         id: newUser.clerkId.toString(),
         name: newUser.name,
         image: newUser.profileImage
 
     })
+
+    console.log("log for streamuser creation", result)
     },
     
 );
